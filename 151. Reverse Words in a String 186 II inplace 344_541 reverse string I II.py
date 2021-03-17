@@ -2,17 +2,41 @@
 # coding: utf-8
 
 # In[ ]:
-
+#344 is just reverse a string
 
 #inplace solution
 #reverse each word first
 #reverse whole string 
+#151 reverse words in a string, remove extra space; same as 186 but no extra space which is simplier
+class Solution(object):
+    def reverse(self, s):
+        s = list(s)
+        l = len(s)
+        m = len(s)//2
+        for i in range(m):
+            t = s[i]
+            s[i] = s[l-i-1]
+            s[l-i-1] = t
+        return ''.join(s)
+        
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        
+        L = s.split(' ')
+        L = [x for x in L if len(x) > 0]
 
+        for i in range(len(L)):
+            L[i] = self.reverse(L[i])
+        
+        return self.reverse(' '.join(L))
 
 # In[9]:
 
 
-#541
+#541 reverse first k for every k
 
 def reverse_k(L, k):
     i = 0
