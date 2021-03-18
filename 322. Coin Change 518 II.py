@@ -7,7 +7,7 @@
 #min number of coins to make amount
 #https://leetcode.com/problems/coin-change/solution/
 
-#F(S)=F(S−C)+1, we do not now which coint (C) so that we need loop and take min
+#F(S)=F(S−C)+1, we do not know which coint (C) so that we need loop and take min
 
 def coinChange(coins, amount):
     dp = [amount+1]*(amount+1)
@@ -26,6 +26,27 @@ def coinChange(coins, amount):
 print(coinChange([1, 2, 5], 11)) #3
 print(coinChange([2], 3))  # -1
 
+#################################################
+class Solution(object):
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+
+        mem = [0]*(amount+1)
+        
+        for i in range(1,amount+1):
+            min_number = float('inf')
+            for coin in coins:
+                if i - coin >= 0 and mem[i-coin] + 1 < min_number:
+                    min_number = mem[i-coin] + 1
+            
+            mem[i] = min_number
+            
+        return mem[amount] if mem[amount] != float('inf') else -1
+        
 
 # In[9]:
 
