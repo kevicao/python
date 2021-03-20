@@ -1,0 +1,17 @@
+class Solution:
+    def computeArea(self, A: int, B: int, C: int, D: int, E: int, F: int, G: int, H: int) -> int:
+        a1 = (C-A)*(D-B)
+        a2 =(G-E)*(H-F)
+        
+        xlow = max(A, E)
+        xhigh =min(C,G)
+        
+        ylow = max(B,F)
+        yhigh = min(D,H)
+        
+        if xhigh - xlow > 0 and yhigh - ylow > 0:
+            over = (xhigh - xlow)*(yhigh - ylow)
+        else:
+            over = 0
+            
+        return a1+a2-over
