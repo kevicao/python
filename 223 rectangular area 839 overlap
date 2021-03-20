@@ -15,3 +15,17 @@ class Solution:
             over = 0
             
         return a1+a2-over
+
+
+
+class Solution:
+    def isRectangleOverlap(self, rec1: List[int], rec2: List[int]) -> bool:
+        xlow = max(rec1[0], rec2[0])
+        xhigh = min(rec1[2], rec2[2])
+        ylow = max(rec1[1], rec2[1])
+        yhigh = min(rec1[3], rec2[3])
+        
+        if xhigh - xlow >0 and yhigh - ylow >0:
+            return True
+        else:
+            return False
