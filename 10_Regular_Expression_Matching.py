@@ -51,8 +51,52 @@ print(regex('aab', 'c*a*b')) #true
 print(regex('mississippi', 'mis*is*p*.')) #false
 
 
-# In[ ]:
+# In[ ]: the following is too slow
 
+class Solution(object):
+    def isMatch(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: bool
+        """
+        
+        if len(s) == len(p) == 0:
+            return True
+        
+        if len(p) == 0:
+            return False
+        
+        if len(s) == 0:
+            if len(p) == 1:
+                return False
+            while len(p) >= 2:
+                if p[1] != '*':
+                    return False
+                else:
+                    return self.isMatch(s,p[2:])
+        if len(p) == 1:
+            print('here')
+            if len(s) > 1:
+                return False
+            elif p[0] == s[0] or p[0] == '.':
+                return True
+            else:
+                return False
+
+        if p[1] != '*':
+            if p[0] == '.' or p[0] == s[0]:
+                return self.isMatch(s[1:], p[1:])
+            else:
+                return False 
+            
+        else:
+            if p[0] == '.' or p[0] == s[0]:
+                return self.isMatch(s[1:], p) or self.isMatch(s, p[2:])
+            else:
+                return self.isMatch(s, p[2:])
+            
+        
 
 
 
