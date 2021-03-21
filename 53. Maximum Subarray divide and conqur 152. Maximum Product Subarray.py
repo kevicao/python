@@ -39,7 +39,32 @@ def max_subarray(L):
 max_subarray([-2,1,-3,4,-1,2,1,-5,4])   
 # max_subarray([2, 3, 4, 5, 7]) 
 
+Given an array of integers, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+Example:
+Input: [-2,1,-3,4,-1,2,1,-5,4],
+Output: 6
+Explanation: [4,-1,2,1] has the largest sum = 6.
 
+[mw_shl_code=python,true]def max_subarray(nums):
+    # T: O(n), S: O(n)
+    if len(nums) == 0:
+        return 0
+   
+    dp = [0]*len(nums)
+    dp[0] = nums[0]
+    result = dp[0]
+   
+    for i in range(1, len(nums)):
+        if dp[i - 1] < 0:
+            dp = nums
+        else:
+            dp = nums + dp[i - 1]
+        result = max(result, dp)
+        
+    return result
+
+if __name__ == "__main__":
+    assert max_subarray([-2,1,-3,4,-1,2,1,-5,4]) == 6[/mw_shl_code]. From 1point 3acres bbs
 # In[13]:
 
 
