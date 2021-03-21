@@ -43,6 +43,35 @@ print(val_p('{[]}')) #true
 
 # In[ ]:
 
-
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        
+        p = []
+        
+        for x in s:
+            if len(p) == 0 or x in ['(', '{', '[']:
+                p.append(x)
+            elif x == ')':
+                if p[-1] != '(':
+                    return False
+                else:
+                    p.pop(-1) 
+                    
+            elif x == ']':
+                if p[-1] != '[':
+                    return False
+                else:
+                    p.pop(-1)
+            elif x == '}':
+                if p[-1] != '{':
+                    return False
+                else:
+                    p.pop(-1)  
+                    
+        return len(p) == 0
 
 
