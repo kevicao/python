@@ -33,3 +33,33 @@ class Solution(object):
                         dic[y] = 1                   
         return ans
         
+
+Position should not matter, count frequency and itterate
+Unique value the same way
+
+class Solution(object):
+    def numTriplets(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        cnt1 = collections.defaultdict(int)
+        cnt2 = collections.defaultdict(int)
+        for n in nums1:
+            cnt1[n] += 1
+        for n in nums2:
+            cnt2[n] += 1
+
+        def triplets(arr1, arr2):
+            ans = 0
+            for t, v in arr1.items():
+                k = arr2.get(t, 0)
+                tmp = k * (k - 1) // 2
+                sq = t * t
+                for m in arr2:
+                    if m < t and sq % m == 0:
+                        tmp += arr2.get(m, 0) * arr2.get(sq // m, 0)
+                ans += tmp * v
+            return ans
+        return triplets(cnt1, cnt2) + triplets(cnt2, cnt1)
