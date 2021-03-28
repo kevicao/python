@@ -1,0 +1,77 @@
+1537. Get the Maximum Score
+
+
+
+
+class Solution(object):
+    def maxSum(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        
+        ans = 0
+        
+        dic = dict()
+        for i in range(len(nums2)) :
+            dic[nums2[i]] = i
+          
+        L1 = []
+        L2 = []
+        for j in range(len(nums1)):
+            if nums1[j] in dic:
+                L1.append(j)
+                L2.append(dic[nums1[j]])
+        
+        res1 = []
+        res2 = []
+        
+        tmp = 0
+        for i in range(len(nums1)):
+            if i in L1 or i == len(nums1) - 1: 
+                res1.append(tmp)
+                res1.append(nums1[i])
+                tmp = 0
+            else:           
+                tmp += nums1[i]
+                
+            
+        tmp = 0
+        for i in range(len(nums2)):
+            if i in L2 or i == len(nums2) - 1: 
+                res2.append(tmp)
+                res2.append(nums2[i])
+                tmp = 0
+            else:
+                tmp += nums2[i]
+                
+        for i in range(2*len(L1)):
+            print(max(res1[i], res2[i]))
+            ans += max(res1[i], res2[i])
+        
+        if len(L1) == 0:
+            end = -1
+        else:
+            end = i
+
+        print(i)
+        over1 = 0
+        i = end
+        while i < len(res1) - 1:
+            i += 1
+            over1 += res1[i]
+            
+        i = end  
+        over2 = 0
+        while i < len(res2) - 1:
+            i += 1
+            over2 += res2[i]
+            
+            
+        print(L1)
+        print(L2)
+        print(res1)
+        print(res2)
+        
+        return (ans + max(over1, over2) )%(10**9 + 7)
