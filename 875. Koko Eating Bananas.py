@@ -21,4 +21,5 @@ class Solution(object):
                 lo = mi + 1
             else:
                 hi = mi
+                
         return lo
