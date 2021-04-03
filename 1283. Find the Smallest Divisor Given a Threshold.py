@@ -1,5 +1,6 @@
 1283. Find the Smallest Divisor Given a Threshold
 
+# Given an array of integers nums and an integer threshold, we will choose a positive integer divisor, divide all the array by it, and sum the division's result. Find the smallest divisor such that the result mentioned above is less than or equal to threshold.
 
 class Solution(object):
     def smallestDivisor(self, nums, threshold):
@@ -14,14 +15,10 @@ class Solution(object):
         l = 1
         r = max(nums)
         while l < r: 
-            print()
-            print(l,r)
-            mid = (l + r)/2
+            mid = (l + r)//2
             if compute_sum(mid) <= threshold:
                 r = mid
             else:
                 l = mid + 1
-            print(mid, compute_sum(mid))
-            print(l,r)
                 
         return l
