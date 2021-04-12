@@ -1,2 +1,19 @@
 # for non-overlap, sort by second element
 # for merging, sort by first element
+
+Tree traverse problem
+105. Construct Binary Tree from Preorder and Inorder Traversal
+106. Construct Binary Tree from Inorder and Postorder Traversal
+331. Verify Preorder Serialization of a Binary Tree
+971. Flip Binary Tree To Match Preorder Traversal
+1028. Recover a Tree From Preorder Traversal
+1569. Number of Ways to Reorder Array to Get Same BST
+1597. Build Binary Expression Tree From Infix Expression
+
+1028 has serialize and deserialize a tree: preorder dft 
+To serialize with special char for null will be enough to 
+Desrialize. 331 to verify such a serialize. 1028 use 
+Level to matk so extra work to deserialize
+1597 is different from others. Need two stack
+105 and 105 are the same, find the root and recurse, 
+They do Not have marker so need two traveses
