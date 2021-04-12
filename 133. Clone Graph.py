@@ -2,9 +2,9 @@
 
 
 class Solution:
-    def cloneGraph(self, node: 'Node') -> 'Node':
+    def cloneGraph(self, node):
         visited = {}
-        def dfs(cur:'Node') -> 'Node':
+        def dfs(cur):
             copy = Node(cur.val)
             visited.update({copy.val:copy})
             copy.neighbors = [visited[nb.val] if nb.val in visited 

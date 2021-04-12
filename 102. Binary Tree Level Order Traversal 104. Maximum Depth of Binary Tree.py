@@ -3,7 +3,41 @@
 
 # In[20]:
 
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if root == None:
+            return []
+        
+        res = [[root.val]]
+        cur = [root]
+        while cur:
+            tmp = []
+            tmp_node = []
+            for x in cur:
+                if x.left != None:
+                    tmp.append(x.left.val)
+                    tmp_node.append(x.left)
+                if x.right != None:
+                    tmp.append(x.right.val)
+                    tmp_node.append(x.right)
+            if tmp:
+                res.append(tmp)
+            cur = tmp_node
+        
+        return res
 
+
+#List solution
 #pq store the index of node in next level, so process pq one by one and build next pq (tmp_l)
 def level_trav(L):
     pq = [0]
