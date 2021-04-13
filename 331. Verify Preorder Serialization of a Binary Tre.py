@@ -1,6 +1,14 @@
 331. Verify Preorder Serialization of a Binary Tree
 
 
+# a binary tree T is full if
+# each node is either a leaf or
+# possesses exactly two child
+# nodes.
+
+# If full binary T has I internal nodes, the number of leaves is L = I + 1.
+# https://courses.cs.vt.edu/~cs3114/Fall09/wmcquain/Notes/T03a.BinaryTreeTheorems.pdf
+
 class Solution(object):
     def isValidSerialization(self, preorder):
         """
