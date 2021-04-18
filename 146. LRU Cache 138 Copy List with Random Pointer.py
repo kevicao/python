@@ -8,103 +8,91 @@
 # HashMap will hold the keys and address of the Nodes of Doubly LinkedList . 
 #And Doubly LinkedList will hold the values of keys.
 
+
+# In[ ]: in this solution, head and tail is always dummy so we do not need check whehter node is tail or head
+
+
 class Node: 
     def __init__(self, key, data): 
         self.value = data 
         self.key = key
         self.next = None
         self.previous = None
+
+class LRUCache(object):
+
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.capacity = capacity
+        self.h = {}
+        self.head = Node(None, None) #most used
+        self.tail = Node(None, None) #least used
+        self.head.next = self.tail
+        self.tail.previous = self.head
         
-class LRU:
-    def __init__(self, size): 
-        self.hash = dict()
-        self.limit = size
-        self.head = Node(None, None)  #most recetnly used
-        self.end = Node(None, None) #least used
-        self.head.next = self.end
-        self.end.previous = self.head
-        
+
     def get(self, key):
-        if key in self.hash:
-            #update linked list
+        """
+        :type key: int
+        :rtype: int
+        """
+        if key in self.h:
+            self.h[key].previous.next = self.h[key].next
+            self.h[key].next.previous = self.h[key].previous
             
-            if self.end != self.hash[key]:
-                self.hash[key].next.previous = self.hash[key].previous
-                self.hash[key].previous.next = self.hash[key].next
-            else:
-                self.end = self.end.previous
-                self.hash[key].previous.next = None
-                
-            if self.hash[key].next == self.end:
-                self.end = self.end.previous
+            self.h[key].next = self.head.next
+            self.head.next.previous = self.h[key]
             
+            self.h[key].previous = self.head
+            self.head.next = self.h[key]
             
-            self.hash[key].next = self.head
-            self.head.previous = self.hash[key]
-            self.head = self.hash[key]
-            
-            return self.hash[key].value
-            
+            return self.h[key].value
         else:
             return -1
         
+
     def put(self, key, value):
-        if key in self.hash: # possbile different value
-            self.hash[key].value = value
-            #update linked list
-            self.hash[key].next.previous = self.hash[key].previous
-            self.hash[key].previous.next = self.hash[key].next
+        """
+        :type key: int
+        :type value: int
+        :rtype: None
+        """
+        if key in self.h:
+            self.h[key].value = value
             
-            self.hash[key].next = self.head
-            self.head.previous = self.hash[key]
-            self.head = self.hash[key]
+            self.h[key].previous.next = self.h[key].next
+            self.h[key].next.previous = self.h[key].previous
             
+            self.h[key].next = self.head.next
+            self.head.next.previous = self.h[key]
             
-        else: 
-            if len(self.hash) == self.limit:
-                #delete from hash
-                print('should delete', self.end.key)
-                self.hash.pop(self.end.key)
-                
-                #move tail first
-                self.end.previous.next = None
-                self.end = self.end.previous
-                
-            self.hash[key] = Node(key, value)
+            self.h[key].previous = self.head
+            self.head.next = self.h[key]            
             
-            if len(self.hash) == 1:
-                self.head = self.hash[key]
-                self.end = self.hash[key]
-                self.head.next = self.end
-                self.end.previous = self.head
+        else:
+            if len(self.h) == self.capacity:
+                #remove least used
+                del self.h[self.tail.previous.key]
                 
-            else:    
-                self.hash[key].next = self.head
-                self.head.previous = self.hash[key]
-                self.head = self.hash[key]
+                self.tail.previous = self.tail.previous.previous
+                self.tail.previous.next = self.tail
                 
                 
-cache = LRU(2)
-cache.put(1, 1)
-print(cache.head.key, cache.end.key, cache.hash)
-cache.put(2, 2)
-print(cache.head.key, cache.end.key, cache.hash)
-print(cache.get(1))      # returns 1
-print(cache.head.key, cache.end.key, cache.hash)
-cache.put(3, 3);    # evicts key 2
-print(cache.get(2))       # returns -1 (not found)
-cache.put(4, 4);    # evicts key 1
-print(cache.get(1))       # returns -1 (not found)
-print(cache.head.key, cache.end.key, cache.hash)
-print(cache.get(3))       # returns 3
-print(cache.get(4))      # returns 4
-        
+            self.h[key] = Node(key, value)
+            
+            self.h[key].next = self.head.next
+            self.head.next.previous = self.h[key]
+            
+            self.h[key].previous = self.head
+            self.head.next = self.h[key]
 
 
-# In[ ]:
-
-
-
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
 
 
 # In[ ]:
