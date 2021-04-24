@@ -2,7 +2,37 @@
 # coding: utf-8
 
 # In[10]:
-
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def __init__(self):
+        self.ans=float("-inf")
+        
+    def maxPathSumU(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        
+        if root==None:
+            return 0
+        
+        ls=self.maxPathSumU(root.left)
+        rs=self.maxPathSumU(root.right)
+        
+        self.ans=max(self.ans,ls+rs+root.val)
+        self.ans=max(self.ans,max(ls,rs)+root.val)
+        self.ans=max(self.ans,root.val)
+        return max(max(ls,rs)+root.val,root.val)
+        
+    
+    def maxPathSum(self, root):
+        self.maxPathSumU(root)   
+        return self.ans   
 
 #https://www.geeksforgeeks.org/find-maximum-path-sum-in-a-binary-tree/#
 

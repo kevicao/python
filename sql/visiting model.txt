@@ -1,0 +1,43 @@
+Context:
+
+userid,
+Lat,
+Long,
+Timestamp,
+Wifi signal - [name,strength]
+Etc.
+-- city, state, country, zipcode
+
+
+
+Places database: 100MM
+Place id
+Place name
+Place lat/long
+Open hours
+(wifi info)
+City, state, country, zipcode
+
+
+1MM Labeled data (splitted to training and testing data)
+Userid, distance(user_location, store_location), duration, during_opening_hour, is_store_wifi, store1 || visited_or_not (1)
+Userid, location, time, store2 || 0
+
+
+Inbalance of label (1% positive)
+
+Duration during online inference
+
+Wiki:
+Is_wifi
+Strength_of_wiki (categorical or numerical)
+
+Distance:
+Distance < threshod
+calculate location from prvious positive label
+
+
+-----
+short stop
+GPS, no speed ---speed average
+wiki -- iphone does not want app to use wiki info
