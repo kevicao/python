@@ -18,19 +18,41 @@
 List = [2, 7, 11, 15]
 target = 26
 # use sum - value1 as key
-def two_sum(List, target):
-    d = dict()
-    for index in range(0, len(List)):
-        if List[index] in d.keys():
-            result = [index, d[List[index]]]
-            result.sort()
-            print(result)
-            print(1)
-        else: 
-            d[target - List[index]] = index
-            print(2)
+def twoSum(self, nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: List[int]
+    """
+    h = {}
+    for i in range(0,len(nums)):
+        if nums[i] in h:
+            return [h[nums[i]],i]
+        else:
+            h[target - nums[i]] = i
 
 two_sum([2, 7, 11, 15], 26)
+
+
+# pair sum, duplicate elemeents, return number of pairs
+# https://leetcode.com/discuss/interview-question/356960
+def numberOfWays(arr, k):
+    # Write your code here
+    ans = 0
+    h = {}
+    for i in range(0,len(arr)):
+        if arr[i] in h:
+            ans += h[arr[i]]
+            
+        if k-arr[i] in h:
+            h[k-arr[i]] += 1
+        else:
+            h[k-arr[i]] = 1
+        
+    return ans
+
+print(numberOfWays([1, 2, 3, 4, 3], 6))
+print(numberOfWays([1, 5, 3, 3, 3], 6))
 # ### II
 # 
 # 167. Two Sum II - Input array is sorted

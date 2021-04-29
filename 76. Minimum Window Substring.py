@@ -3,27 +3,7 @@
 
 # In[ ]:https://leetcode.com/problems/minimum-window-substring/solution/
 
-
-def mw(s, t):
-    left = 0
-    right = 0
-    
-    t = set(t)
-    w = set()
-    
-    while right < len(s):
-        if set(s[left:right]) == t:
-            for j in range(left, right):
-                if set[j:right] = t:
-                    left = j
-                    size = right - left + 1
-                    
-                    
-            
-    
-
-
-# In[7]:
+# also facebook interview questions
 
 
 def minWindow(s, t):

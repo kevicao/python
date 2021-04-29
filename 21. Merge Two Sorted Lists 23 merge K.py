@@ -94,6 +94,95 @@ merge_k([[1,4,5], [1,3,4], [2,6]])
 
 # In[ ]:
 
+# compass
 
+
+# You are given two sorted lists of log messages (time stamp and message). Merge the two lists into a single list sorted by timestamp.
+
+def merge_sorted_list(A, B):
+    i = 0
+    j = 0
+    
+    C = []
+    while (i < len(A)) and (j < len(B)):
+        if A[i] <= B[j]:
+            C.append((A[i]))
+            i = i + 1
+            
+        else:
+            C.append(B[j])
+            j += 1
+            
+    if i < len(A):
+        C = C + A[i:]
+                
+    if j < len(B):
+        C = C + B[j:]
+                    
+    return C
+                     
+# You are given a list of log messages(timestamp and message) that consists of several sorted blocks(sub arrays). Return the list sorted by the time stamp.
+
+# Time Stamp Message
+# 1            m_1
+# 2             m_2   
+# 5             m_3
+                     
+# 2             m_4                     
+# 5             m_5
+# 11            m_6
+# 21            m_7
+                     
+# 4            m_8
+# 9            m_9
+# 112             m_10
+# 1             m_10
+                     
+                     
+                     
+def find_sorted_list(arr):
+    ans = []
+                     
+    tmp = []
+    for i in range(len(arr) -1) :
+        tmp.append(arr[i])
+                     
+        if arr[i] > arr[i+1] :
+            ans.append(tmp)
+            tmp = []
+    
+    tmp.append(arr[-1])
+    ans.append(tmp)
+                     
+    return ans
+                     
+
+def merge_n_lists(arr):
+
+    while len(arr) > 1:
+        n = len(arr) 
+        count = 0
+        i = 0 
+        while i < n-1 :
+            arr.append(merge_sorted_list(arr[i], arr[i+1]))
+            i += 2
+            count += 1
+        
+        if i == n-1:
+            arr.append(arr[i])
+            count += 1
+        
+        arr = arr[-count:]
+                     
+    return arr[0]
+                     
+                     
+a = [[1,2], [9,10,11], [5,6]]
+a = [[], [9,10,11], [5,6]]
+a = [[]] 
+a = [1,2,9,10,11,5,6]
+a = find_sorted_list(a)
+print(a)
+print(merge_n_lists(a) ) 
 
 

@@ -1,3 +1,56 @@
+
+
+
+def reverse(head):
+  # Write your code here
+# [x x |x x x| x x]
+#    p  s   e  h
+    dummy_head = Node(0)
+    dummy_head.next = head
+    prev = dummy_head
+    running_prev = dummy_head
+    s = None
+    e = None
+    
+    flag = 0
+    while flag <= 1:
+        if head and (head.data%2 == 0):
+            if not s:
+                s = head
+        else:
+            if not s:
+                print('here')
+                prev = head
+            if s and (not e):
+                e = running_prev
+                #print(s.data, e.data, prev.data, head.data)
+        
+        if s and e:
+            #reverse
+            tmp_h = s
+            p = s.next
+            while p != head:  
+                tmp = p
+                p = p.next
+                tmp.next = tmp_h
+                tmp_h = tmp
+                
+                
+            prev.next = tmp_h
+            s.next = head
+            prev = head
+            s = None
+            e = None
+            
+        
+        if head:
+          running_prev = head       
+          head = head.next
+        if not head:
+          flag += 1
+        
+    return dummy_head.next
+
 25. Reverse Nodes in k-Group
 
 # first check whether we have k left, if so, reverse the k nodes (when reverse, we work one by one, 
