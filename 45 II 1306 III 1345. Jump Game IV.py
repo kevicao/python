@@ -1,5 +1,7 @@
 
-1345. Jump Game IV 1306 III
+# https://leetcode.com/problems/jump-game-iv/solution/
+
+# 1345. Jump Game IV 1306 III
 
 
 class Solution(object):
@@ -150,3 +152,40 @@ class Solution(object):
 
 
         return False   
+
+# 45. Jump Game II
+class Solution(object):
+    def jump(self, arr):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(arr)
+        if n <= 1:
+            return 0
+
+        curs = [0]  # store current layers
+        visited = {0}
+        step = 0
+
+        # when current layer exists
+        while curs:
+            nex = []
+
+            # iterate the layer
+            for node in curs:
+                # check if reached end
+                if node == n-1:
+                    return step
+
+
+                # check neighbors
+                for child in range(node- arr[node], node + arr[node] +1):
+                    if 0 <= child < len(arr) and child not in visited:
+                        visited.add(child)
+                        nex.append(child)
+
+            curs = nex
+            step += 1
+
+        return -1    
