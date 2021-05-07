@@ -1,5 +1,5 @@
 
-1345. Jump Game IV
+1345. Jump Game IV 1306 III
 
 
 class Solution(object):
@@ -115,3 +115,38 @@ class Solution(object):
             step += 1
 
         return -1
+
+
+# 1306. Jump Game III
+class Solution(object):
+    def canReach(self, arr, start):
+        """
+        :type arr: List[int]
+        :type start: int
+        :rtype: bool
+        """
+
+        curs = [start]  # store current layers
+        visited = {start}
+
+        # when current layer exists
+        while curs:
+            nex = []
+
+            # iterate the layer
+            for node in curs:
+                # check if reached end
+                if arr[node] == 0:
+                    return True
+
+
+                # check neighbors
+                for child in [node- arr[node], node + arr[node]]:
+                    if 0 <= child < len(arr) and child not in visited:
+                        visited.add(child)
+                        nex.append(child)
+
+            curs = nex
+
+
+        return False   
