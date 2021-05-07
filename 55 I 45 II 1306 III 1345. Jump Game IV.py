@@ -1,5 +1,6 @@
 
 # https://leetcode.com/problems/jump-game-iv/solution/
+# 55 I is different
 
 # 1345. Jump Game IV 1306 III
 
@@ -189,3 +190,32 @@ class Solution(object):
             step += 1
 
         return -1    
+
+# 55. Jump Game
+
+class Solution(object):
+    def canJump(self, arr):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        n = len(arr)
+        if n <= 1:
+            return True
+        
+        cur = 0
+        maximum = arr[0]
+        
+        while maximum < len(arr):
+            if maximum >= len(arr)-1:
+                return True
+            
+            tmp_m = maximum
+            for i in range(cur+1, maximum + 1):
+                if i + arr[i] > maximum:
+                    maximum = i + arr[i]
+            cur = tmp_m
+            if maximum <= cur:
+                return False    
+            
+        return True
