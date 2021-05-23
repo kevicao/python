@@ -28,7 +28,7 @@ def buildTree(inOrder, preOrder, inStrt, inEnd):
 
 	# Pich current node from Preorder traversal using 
 	# preIndex and increment preIndex 
-	tNode = Node(preOrder[buildTree.preIndex]) 
+	tNode = Node(preOrder[buildTree.preIndex]) #preIndex is defined in driver code
 	buildTree.preIndex += 1
 
 	# If this node has no children then return 
@@ -78,6 +78,7 @@ root = buildTree(inOrder, preOrder, 0, len(inOrder)-1)
 print("Inorder traversal of the constructed tree is")
 printInorder(root) 
 
+/////////////////////////////////////////////////////////////////////////
 
 # In[ ]:
 

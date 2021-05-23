@@ -66,6 +66,8 @@ class Solution(object):
         return self.root
 
 # Serialize / deserialize binary tree
+# https://www.educative.io/blog/cracking-top-facebook-coding-interview-questions
+
 # There can be multiple approaches to serialize and deserialize the tree. One approach is to perform a depth-first traversal and serialize individual nodes to the stream. We’ll use a pre-order traversal here. We’ll also serialize some markers to represent a null pointer to help deserialize the tree.
 
 # Consider the below binary tree as an example. Markers (M*) have been added in this tree to represent null nodes. The number with each marker i.e. 1 in M1, 2 in M2, merely represents the relative position of a marker in the stream.
