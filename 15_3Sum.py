@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
+Find all unique triplets in an array, giving sum of zero
 
 #  find all a + b + c = 0 in an array of integers
 
@@ -13,7 +12,7 @@
 
 # In[14]: loop from left to right to see if each can be included in one. The check could be 2sum or narrow down from both end in sorted array
 
-# there could be duplicated elements
+# there could be duplicated elements; result can not have duplicates
 
 
 class Solution(object):
@@ -120,3 +119,21 @@ class Solution(object):
 
         return result[1:]
 
+
+
+# leverge twoSum solution
+
+def two_sum(List, target):
+    Dict = dict()
+    for index, x in enumerate(List):
+        if x not in Dict.keys():
+            Dict[target-x] = index
+        else:
+            print 'found the two number:', index, Dict[x]
+            print List[index], List[Dict[x]]
+            
+            
+def three_sum(List):
+    solution = []
+    for i in range(len(List)):
+        

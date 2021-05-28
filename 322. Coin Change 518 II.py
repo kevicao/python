@@ -71,8 +71,17 @@ print(change([5, 1, 2], 5))  #4
 print(change([10],10)) #1
 
 
-# In[ ]:
-
+# In[ ]: facebook: whehter it is possible to make the amount
+def canGetExactChange(targetMoney, denominations):
+  # Write your code here
+    arr = [False]*(targetMoney+1)
+    arr[0] = True
+    for x in range(1,targetMoney+1):
+        for denom in denominations:
+            if (x - denom >= 0) and (arr[x-denom] == True):
+                arr[x] = True
+                
+    return arr[-1]  
 
 
 

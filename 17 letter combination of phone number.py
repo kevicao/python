@@ -1,4 +1,4 @@
-[mw_shl_code=python,true]class Solution:
+class Solution:
     def letterCombinations(self, digits):        
         if not digits or len(digits) == 0:
             return []

@@ -1,6 +1,8 @@
 Count contiguous subarrays
 
 # https://leetcode.com/discuss/interview-question/579606/count-contiguous-subarrays
+# this is similar to the max area under a histogram
+
 def count_subarrays(arr):
 #   Keep track of how many starting indexes we're carrying along for a ride    
     onboard = []

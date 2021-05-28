@@ -7,7 +7,7 @@ c#!/usr/bin/env python
 # 1. bucket sort: find biggerst value and make an array of that size. turn on index of element value
 # 
 # # O(n^2)
-# 2. bubble sort: compare each adjecent number an swap if possible 
+# 2. bubble sort: compare each adjecent number and swap if possible 
 # 
 # 3. selection sort: The algorithm works by selecting the smallest unsorted item and then swapping it with the item in the next position to be filled
 # 
@@ -69,8 +69,11 @@ if __name__ == '__main__':
 
 # 6. heapsort
 # 
-# 
-# 
+heapsort(iterable):
+    h = []
+    for value in iterable:
+        heappush(h, value)
+        return [heappop(h) for i in range(len(h))]# 
 # 7. quicksort: pick one (last or middle) and move smaller left and larger to right, repeat on both sides (divide and conquer (O(nlogn) or O(n^2)
 # https://leetcode.com/explore/learn/card/recursion-ii/470/divide-and-conquer/2870/
 def partition(arr,low,high): 
@@ -93,7 +96,7 @@ def quickSort(arr,low,high):
         pi = partition(arr,low,high) 
 
         # Separately sort elements before 
-        # partition and after partition 
+        # partition position and after partition position
         quickSort(arr, low, pi-1) 
         quickSort(arr, pi+1, high) 
 

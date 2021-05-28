@@ -1,16 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# # 207. Course Schedule
-
-# In[ ]:
+207. Course Schedule Amazon package load problem
 
 
-# number of course: 2, course 0 should be finished before 1: [[1,0]]
-
-
-# In[2]:
-
+Determine the order of letters in a dictionary
+Find Order Of Characters From Alien Dictionary Problem
 
 # topological ordering
 # https://en.wikipedia.org/wiki/Topological_sorting
@@ -66,4 +58,3 @@ def topo_ordering(List):
         
         
 print(topo_ordering(List))
-

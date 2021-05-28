@@ -1,56 +1,3 @@
-
-
-
-def reverse(head):
-  # Write your code here
-# [x x |x x x| x x]
-#    p  s   e  h
-    dummy_head = Node(0)
-    dummy_head.next = head
-    prev = dummy_head
-    running_prev = dummy_head
-    s = None
-    e = None
-    
-    flag = 0
-    while flag <= 1:
-        if head and (head.data%2 == 0):
-            if not s:
-                s = head
-        else:
-            if not s:
-                print('here')
-                prev = head
-            if s and (not e):
-                e = running_prev
-                #print(s.data, e.data, prev.data, head.data)
-        
-        if s and e:
-            #reverse
-            tmp_h = s
-            p = s.next
-            while p != head:  
-                tmp = p
-                p = p.next
-                tmp.next = tmp_h
-                tmp_h = tmp
-                
-                
-            prev.next = tmp_h
-            s.next = head
-            prev = head
-            s = None
-            e = None
-            
-        
-        if head:
-          running_prev = head       
-          head = head.next
-        if not head:
-          flag += 1
-        
-    return dummy_head.next
-
 25. Reverse Nodes in k-Group
 
 # first check whether we have k left, if so, reverse the k nodes (when reverse, we work one by one, 
@@ -111,55 +58,68 @@ class Solution(object):
 
 
 
+#facebook pracice: Reverse Operations
+# You are given a singly-linked list that contains N integers. A subpart of the list is a contiguous set of even elements, bordered either by either end of the list or an odd element. For example, if the list is [1, 2, 8, 9, 12, 16], the subparts of the list are [2, 8] and [12, 16].
+# Then, for each subpart, the order of the elements is reversed. In the example, this would result in the new list, [1, 8, 2, 9, 16, 12].
+# The goal of this question is: given a resulting list, determine the original order of the elements.
 
-# take k nodes and reverse, this pass time limit
+class Node:
+  def __init__(self, x):
+    self.data = x
+    self.next = None
 
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-class Solution(object):
-    def reverseKGroup(self, head, k):
-        """
-        :type head: ListNode
-        :type k: int
-        :rtype: ListNode
-        """
-        temp_h = head
-        h = [0]*k
-        h[0] = head.next
+# Add any helper functions you may need here
 
-        for i in range(1,k): 
-            h[i] = h[i-1].next 
-            
-        for i in range(1,k):
-            h[i-1].next = h[i].next
-            h[i].next = temp_h.next
-            temp_h.next = h[i]  
+
+def reverse(head):
+  # Write your code here
+# [x x |x x x| x x]
+#    p  s   e  h
+    dummy_head = Node(0)
+    dummy_head.next = head
+    prev = dummy_head
+    running_prev = dummy_head
+    s = None
+    e = None
+    
+    flag = 0
+    while flag <= 1:
+        if head and (head.data%2 == 0):
+            if not s:
+                s = head
+        else:
+            if not s:
+                print('here')
+                prev = head
+            if s and (not e):
+                e = running_prev
+                #print(s.data, e.data, prev.data, head.data)
         
-        temp_h = h[-1]
-        
-        while True:
-            h[0] = h[k-1].next
-            for i in range(1,k):
-                if h[i-1].next: 
-                    h[i] = h[i-1].next
-                else:
-                    break
-            if i < k-1:
-                break
-            else:
-                for i in range(1,k):
-                    h[i-1].next = h[i].next
-                    h[i].next = temp_h.next
-                    temp_h.next = h[i]  
-                temp_h = h[-1]
+        if s and e:
+            #reverse
+            tmp_h = s
+            p = s.next
+            while p != head:  
+                tmp = p
+                p = p.next
+                tmp.next = tmp_h
+                tmp_h = tmp
                 
-        return head
+                
+            prev.next = tmp_h
+            s.next = head
+            prev = head
+            s = None
+            e = None
+            
         
-
-
+        if head:
+          running_prev = head       
+          head = head.next
+        if not head:
+          flag += 1
+        
+    return dummy_head.next
 
 # 206. Reverse Linked List
 

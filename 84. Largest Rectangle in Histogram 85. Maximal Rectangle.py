@@ -1,8 +1,9 @@
+#similar to facebookproblem 'count continous subarrray', but not continuous
 
 # 84. Largest Rectangle in Histogram
 # Finds the maximum area under the histogram represented 
 # by histogram. See below article for details. 
-# https:#www.geeksforgeeks.org/largest-rectangle-under-histogram/ 
+# www.geeksforgeeks.org/largest-rectangle-under-histogram/ 
 class Solution(object):
     def largestRectangleArea(self, histogram):
         """
