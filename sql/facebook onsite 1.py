@@ -37,40 +37,7 @@ def find_k_points(arr, k):
         
     return result
             
-        
-               
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 """
