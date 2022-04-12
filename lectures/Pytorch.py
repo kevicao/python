@@ -1,5 +1,8 @@
 
 conda activate pytorch
+
+tensorboard --logdir=runs
+
 torch.cuda.is_available()
 
 device = torch.device("cuda")
