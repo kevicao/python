@@ -7,6 +7,15 @@ torch.cuda.is_available()
 
 device = torch.device("cuda")
 
+# save model
+torch.save(arg, PATH)
+torch.load(PATH)
+model.eval()
+#
+torch.save(model.state_dict(),PATH)
+model = Model(args)
+model.load_state_dict(torch.load(PATH))
+model.eval()
 
 import torch
 x = torch.rand(2,2, device=device)
