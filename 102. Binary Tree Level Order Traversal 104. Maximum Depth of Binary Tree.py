@@ -9,6 +9,13 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+n7 = TreeNode(7)
+n15 = TreeNode(15)
+n20 = TreeNode(20,n15,n7)
+n9 = TreeNode(9)
+n3 = TreeNode(3,n9,n20)
+
 class Solution(object):
     def levelOrder(self, root):
         """
@@ -36,6 +43,8 @@ class Solution(object):
         
         return res
 
+s = Solution()
+s.levelOrder(n3)
 
 #List solution
 #pq store the index of node in next level, so process pq one by one and build next pq (tmp_l)
