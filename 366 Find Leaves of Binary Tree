@@ -1,0 +1,39 @@
+# Given a binary tree, collect a tree’s nodes as if you were doing this: Collect and remove all leaves, 
+#     repeat until the tree is empty.
+
+# Input: [1,2,3,4,5]
+  
+#           1
+#          / \
+#         2   3
+#        / \     
+#       4   5    
+
+# Output: [[4,5,3],[2],[1]]
+
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+n4 = TreeNode(4)
+n5 = TreeNode(5)
+n2 = TreeNode(2,n4,n5)
+n3 = TreeNode(3)
+n1 = TreeNode(3,n2,n3)
+
+def findLeaves(root):
+    def dfs(root):
+        if not root:
+            return -1
+        depth = max(dfs(root.left), dfs(root.right))+1
+        if depth == len(res):
+            res.append([])
+        res[depth].append(root.val)
+        return depth
+    res = []
+    dfs(root)
+    return res
+    
+findLeaves(n1)
