@@ -1,71 +1,29 @@
-#!/usr/bin/env python
-# coding: utf-8
 
-# In[ ]:
+#recursion
+class Node:
+    def __init__(self, value=0, left=None, right=None):
+        self.left = left
+        self.right = right
+        self.value = value
+
+C = Node(3, None, None)
+B = Node(2, C, None)
+A = Node(1, None, B)
 
 
-array representation: p, 2p+1 for left, 2p+2 for right
-
-
-# In[13]:
-
-
-tree = dict()
-tree['root'] = dict()
-tree['root']['key'] = 1
-tree['root']['left'] = None
-tree['root']['right'] = 'ela'
-
-tree['ela'] = dict()
-tree['ela']['key'] = 2
-tree['ela']['left'] = 'wle'
-tree['ela']['right'] = None
-
-tree['wle'] = dict()
-tree['wle']['key'] = 3
-tree['wle']['left'] = None
-tree['wle']['right'] = None
-
-def inorder_traversal(tree, root):
+def inorder_traversal(root):
     if root is None:
         return []
-    elif tree[root]['left'] is None and tree[root]['right'] is None:
-        return [tree[root]['key']]    
+    elif root.left is None and root.right is None:
+        return [root.value]    
     else:
-        return inorder_traversal(tree, tree[root]['left']) + [tree[root]['key']] +                     inorder_traversal(tree, tree[root]['right'])
-
-inorder_traversal(tree, 'root')
-
-
-# In[21]:
-
-
-def node(value, left, right):
-    tmp = dict()
-    tmp['value'] = value
-    tmp['left'] = left
-    tmp['right'] = right
-    
-    return tmp
-
-C = node(3, None, None)
-B = node(2, C, None)
-A = node(1, None, B)
-
-
-def inorder_traversal(tree):
-    if tree is None:
-        return []
-    elif tree['left'] is None and tree['right'] is None:
-        return [tree['value']]    
-    else:
-        return inorder_traversal(tree['left']) + [tree['value']] +                     inorder_traversal(tree['right'])
+        return inorder_traversal(root.left) + [root.value] + inorder_traversal(root.right)
 
 inorder_traversal(A)
 
 
-# In[24]:
 
+# array representation: p, 2p+1 for left, 2p+2 for right
 
 L = [1, None, 2, None, None, 3]
 
@@ -80,9 +38,7 @@ def inorder_recur(L, root):
 inorder_recur(L, 0)
 
 
-# In[47]:
-
-
+# itteration
 # https://www.cnblogs.com/bymo/p/9591063.html
 def inorder_iter(L):
     stack = []
@@ -109,17 +65,79 @@ L = [1, 2, 3, 4, 5]
 inorder_iter(L)  #4,2,5,1,3
 
 
-# In[35]:
+class Node:
+    def __init__(self, val=0, left=None, right=None):
+        self.left = left
+        self.right = right
+        self.val = val
 
+D = Node(4, None, None)
+E = Node(5, None, None)
+B = Node(2, D, E)
+C = Node(3)
+A = Node(1, B, C)
 
-a = [1,2,3]
-b = []
-c = a.pop()
-c
+class Solution(object):       
+    def inorderTraversal(self, root):  # 迭代
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        stack = []
+        res = []
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            res.append(root.val)
+            root = root.right
+        return res
 
+    def preorderTraversal(self, root):  # 迭代
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        stack = []
+        res = []
+        while root or stack:
+            while root:
+                res.append(root.val)
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            root = root.right
+        return res
 
-# In[ ]:
+    def postorderTraversal(self, root):  # 迭代
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        stack = []
+        res = []
+        while root or stack:
+            while root:
+                if root.right: 
+                    stack.append(root.right) 
+                stack.append(root)
 
+                root = root.left        
+            root = stack.pop()
+            if root.right and (len(stack) > 0 and stack[-1] == root.right): 
+                stack.pop() # Remove right child from stack 
+                stack.append(root) # Push root back to stack 
+                root = root.right # change root so that the 
+                                # right childis processed next 
 
+            else: 
+                res.append(root.val) 
+                root = None
 
-
+        return res
+        
+s = Solution()
+# s.inorderTraversal(A)
+# s.preorderTraversal(A)
+s.postorderTraversal(A)
